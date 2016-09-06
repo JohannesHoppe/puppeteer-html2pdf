@@ -4,20 +4,31 @@ var express = require('express');
 var Nightmare = require('nightmare');
 var app = express();
 
-app.get('/', function(req, res) {
-  
-    new Nightmare({ show: true })
-        //.useragent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36')
-        .viewport(1200, 950)
-        .goto('http://haushoppe-its.de')
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/pdf', (req, res) => {
+
+    var url = req.param('url')
+    url = url || 'data:;charset=utf-8,No%20url%20given%21';
+
+    new Nightmare({ show: false })
+        .goto(url)
         .wait()
-        .screenshot('screenshots/bbc.png')
-        .run(function() {
-            res.send('Screenshot has been captured');
+        .pdf({printBackground: true})
+        .run((error, pdfBuffer) => {
+
+            if (error) {
+                return res.status(500).send(error)
+            }
+
+            res.set('Content-Type', 'application/pdf');
+            res.send(new Buffer(pdfBuffer, 'binary'))
         })
         .end();
 });
 
-app.listen(3000, function () {
+app.listen(3000, () => {
   console.log('Listening on port 3000!');
 });
