@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "startForever": "forever --minUptime 1000 --spinSleepTime 1000 server.js"
+    "startForever": "node index.js"
   },
   "repository": {
     "type": "git",

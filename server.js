@@ -13,6 +13,8 @@ app.get('/pdf', (req, res) => {
     var url = req.param('url');
     url = (url && url !== 'http://') ? url : 'data:;charset=utf-8,No%20url%20given%21';
 
+    console.log('Requesting:', url);
+    
     var nightmare = new Nightmare({ show: false });
 
     nightmare
@@ -28,6 +30,8 @@ app.get('/pdf', (req, res) => {
                     landscape: false
                  })
                 .run((error, pdfBuffer) => {
+                    console.log('Delivering PDF of', pdfBuffer.length, 'bytes');
+                  
                     res.set('Content-Type', 'application/pdf');
                     res.set('Content-Disposition: attachment; filename=' + title +'.pdf');
                     res.send(new Buffer(pdfBuffer, 'binary'));
