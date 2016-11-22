@@ -3,7 +3,7 @@ set -e
 
 . ~/.profile
 
-OPT=${HOME}
+OPT=${ROOT}
 COMMAND=(xvfb-run --server-args "-screen 0 1024x768x24" node --harmony)
 ARGUMENTS=${ARGUMENTS} #(--fail-fast --no-colors)
 
