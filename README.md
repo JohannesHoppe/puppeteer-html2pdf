@@ -34,7 +34,7 @@ You can build and run your own image via:
 
 ```sh
 docker build -t html2pdf .
-docker run -p 3000:3000 html2pdf
+docker run -p 8080:8080 html2pdf
 ```
 
 ## Requirements
