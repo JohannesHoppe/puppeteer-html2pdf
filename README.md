@@ -47,4 +47,4 @@ docker run -p 8080:8080 html2pdf
 
 [The MIT License (MIT)](LICENSE)  
 
-Copyright (c) 2016 Johannes Hoppe  
+Copyright (c) 2017 Johannes Hoppe  

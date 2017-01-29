@@ -1,15 +1,14 @@
-# from https://github.com/Koleok/docker-nightmare
+# much stuff was taken over from https://github.com/ivanvanderbyl/docker-nightmare/
+# which bases on instructions from https://github.com/segmentio/nightmare/issues/224
 
-FROM node:4.2
+FROM node:7.4
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd --system nightmare && useradd --system --create-home --gid nightmare nightmare
-ENV ROOT "/root/nightmare"
+# downloads the package lists from the repositories and "updates" them
+# to get information on the newest versions of packages and their dependencies
+RUN apt-get -qq update
 
-ENV DEBUG=nightmare
-ENV ARGUMENTS=()
-
-RUN apt-get update && apt-get install -y \
+# installing the packages needed to run Nightmare
+RUN apt-get -qq install -y \
   xvfb \
   x11-xkb-utils \
   xfonts-100dpi \
@@ -30,23 +29,26 @@ RUN apt-get update && apt-get install -y \
   libxss1 \
   libnss3-dev \
   gcc-multilib \
-  g++-multilib && \
-    rm -rf /var/lib/apt/lists/* && \
-		find /usr/share/doc -depth -type f ! -name copyright | xargs rm || true && \
-		find /usr/share/doc -empty | xargs rmdir || true && \
-		rm -rf /usr/share/man/* /usr/share/groff/* /usr/share/info/* && \
-		rm -rf /usr/share/lintian/* /usr/share/linda/* /var/cache/man/*
+  g++-multilib
 
-WORKDIR ${ROOT}
-COPY ./package.json ./
-RUN npm install
+ENV DEBUG="nightmare"
 
-VOLUME ${ROOT}
+# 1st adding dependencies (this way you don't rebuild your modules each time you re-build your container)
+ADD package.json package.json
+RUN npm install --silent
 
-COPY docker-entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# 2n adding app code to the container
+ADD . .
+
+
+# Combining ENTRYPOINT and CMD allows you to specify the default executable for your image while
+# also providing default arguments to that executable which may be overridden by the user.
+# --> the command which is executed is a combination of the ENTRYPOINT and CMD values 
+# (see https://www.ctl.io/developers/blog/post/dockerfile-entrypoint-vs-cmd/)
+
+COPY entrypoint.sh /entrypoint
+RUN chmod +x /entrypoint
+ENTRYPOINT ["/entrypoint", "node", "--harmony-async-await"]
 
 EXPOSE 8080
-ENTRYPOINT ["/entrypoint.sh"]
-
-
+CMD ["index.js"]

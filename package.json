@@ -4,8 +4,8 @@
   "description": "The worlds most simpliest website to PDF converter, based on express and nightmare.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "startForever": "node index.js"
+    "start": "node index.js",
+    "debug": "node server.js"
   },
   "repository": {
     "type": "git",
