@@ -13,15 +13,6 @@ npm start
 Browse to http://localhost:3000/ and start converting websites to PDF files.  
 Review the requirements if it doesn't work.
 
-## Online Demo
-
-### Try it out: http://html2pdf.haushoppe-its.de:8080/
-
-
-**Don't rely on the service!**
-I can and will shut down the demo whenever i want.
-There is also no warranty of any kind. Please report every abuse / illegal usage to http://haushoppe-its.de/kontakt/ .
-
 ## Docker
 
 A prepared docker image is available, too.
