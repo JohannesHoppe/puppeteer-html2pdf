@@ -15,11 +15,14 @@ app.get('/pdf', (req, res) => {
 
     console.log('Requesting:', url);
     
-    var nightmare = new Nightmare({ show: false });
+    var nightmare = new Nightmare({ 
+        show: false,
+        gotoTimeout: 10 * 1000, // in ms
+        loadTimeout: 10* 1000 // in ms
+    });
 
     nightmare
         .goto(url)
-        .wait()
         .title()
         .then(function (title) {
             return nightmare

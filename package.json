@@ -1,6 +1,6 @@
 {
   "name": "nightmare-html2pdf",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The worlds most simpliest website to PDF converter, based on express and nightmare.",
   "main": "server.js",
   "scripts": {
@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/JohannesHoppe/nightmare-html2pdf#readme",
   "dependencies": {
-    "express": "^4.14.0",
-    "nightmare": "^2.7.0",
-    "forever": "^0.15.2"
+    "express": "4.15.2",
+    "nightmare": "2.10.0",
+    "forever": "0.15.3"
   }
 }
