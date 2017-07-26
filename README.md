@@ -2,7 +2,7 @@
 
 ![Screenshot](screenshot.png)
 
-The worlds most simplest website to PDF converter, based on [express](http://expressjs.com/) and [nightmare](http://www.nightmarejs.org/).
+The worlds most simplest website to PDF converter, based on [express](http://expressjs.com/) and [Chromeless}(https://github.com/graphcool/chromeless) (previously [nightmare](http://www.nightmarejs.org/)).
 
 ## Howto
 ```

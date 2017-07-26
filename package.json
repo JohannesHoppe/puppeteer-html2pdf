@@ -28,7 +28,7 @@
   "homepage": "https://github.com/JohannesHoppe/nightmare-html2pdf#readme",
   "dependencies": {
     "express": "4.15.2",
-    "nightmare": "2.10.0",
+    "chromeless": "1.0.0",
     "forever": "0.15.3"
   }
 }

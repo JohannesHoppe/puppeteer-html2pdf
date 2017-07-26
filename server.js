@@ -1,7 +1,7 @@
 "use strict";
 
 var express = require('express');
-var Nightmare = require('nightmare');
+var Chromeless = require('chromeless').Chromeless;
 var app = express();
 
 app.get('/', (req, res) => {
@@ -14,18 +14,13 @@ app.get('/pdf', (req, res) => {
     url = (url && url !== 'http://') ? url : 'data:;charset=utf-8,No%20url%20given%21';
 
     console.log('Requesting:', url);
-    
-    var nightmare = new Nightmare({ 
-        show: false,
-        gotoTimeout: 10 * 1000, // in ms
-        loadTimeout: 10* 1000 // in ms
-    });
+    var chromeless = new Chromeless();
 
-    nightmare
+    chromeless
         .goto(url)
         .title()
         .then(function (title) {
-            return nightmare
+            return chromeless
                 .pdf({
                     printBackground: true,
                     marginsType: 0,
