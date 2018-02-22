@@ -1,43 +1,45 @@
-"use strict";
+const express = require('express');
+const asyncHandler = require('express-async-handler')
+const puppeteer = require('puppeteer');
+const app = express();
 
-var express = require('express');
-var Chromeless = require('chromeless').Chromeless;
-var app = express();
+const PORT = process.env.PORT || 4000;
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/pdf', (req, res) => {
+app.get('/pdf', asyncHandler(async (req, res) => {
 
-    var url = req.param('url');
-    url = (url && url !== 'http://') ? url : 'data:;charset=utf-8,No%20url%20given%21';
+  let url = req.param('url');
+  url = (url && url !== 'http://') ? url : 'data:;charset=utf-8,No%20url%20given%21';
 
-    console.log('Requesting:', url);
-    var chromeless = new Chromeless();
+  console.log('Requesting:', url);
 
-    chromeless
-        .goto(url)
-        .title()
-        .then(function (title) {
-            return chromeless
-                .pdf({
-                    printBackground: true,
-                    marginsType: 0,
-                    pageSize: 'A4',
-                    landscape: false
-                 })
-                .run((error, pdfBuffer) => {
-                    console.log('Delivering PDF of', pdfBuffer.length, 'bytes');
-                  
-                    res.set('Content-Type', 'application/pdf');
-                    res.set('Content-Disposition: attachment; filename=' + title +'.pdf');
-                    res.send(new Buffer(pdfBuffer, 'binary'));
-                });
-        });
-});
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  await page.goto(url, { waitUntil: 'networkidle2' });
+  var pdfBuffer = await page.pdf({
+    printBackground: true,
+    margin: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+    },
+    format: 'A4'
+  });
+  await browser.close();
+
+  console.log('Delivering PDF of', pdfBuffer.length, 'bytes');
+  
+  res.set('Content-Type', 'application/pdf');
+  res.set('Content-Disposition: attachment; filename=file.pdf');
+  res.send(new Buffer(pdfBuffer, 'binary'));  
+}));
 
 
-app.listen(8080, () => {
-    console.log('Listening on port 8080!');
+app.listen(PORT, () => {
+  console.log('html2pdf: Listening on port %s', PORT);
 });

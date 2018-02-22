@@ -1,34 +1,37 @@
 {
-  "name": "nightmare-html2pdf",
+  "name": "puppeteer-html2pdf",
   "version": "0.0.2",
-  "description": "The worlds most simpliest website to PDF converter, based on express and nightmare.",
+  "description": "The worlds most simpliest website to PDF converter, based on express and puppeteer.",
   "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "debug": "node server.js"
+    "start": "node server.js",
+    "start-forever": "node server-forever.js"
+  },
+  "engines": {
+    "node": "9.4.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JohannesHoppe/nightmare-html2pdf.git"
+    "url": "git+https://github.com/JohannesHoppe/puppeteer-html2pdf.git"
   },
   "keywords": [
-    "nightmare",
+    "chromeless",
     "pdf",
     "converter",
     "express",
     "html",
-    "html2pdf",
-    "docker"
+    "html2pdf"
   ],
   "author": "Johannes Hoppe <johannes.hoppe@haushoppe-its.de> (http://haushoppe-its.de/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JohannesHoppe/nightmare-html2pdf/issues"
+    "url": "https://github.com/JohannesHoppe/puppeteer-html2pdf/issues"
   },
-  "homepage": "https://github.com/JohannesHoppe/nightmare-html2pdf#readme",
+  "homepage": "https://github.com/JohannesHoppe/puppeteer-html2pdf#readme",
   "dependencies": {
-    "express": "4.15.2",
-    "chromeless": "1.0.0",
-    "forever": "0.15.3"
+    "express": "^4.15.2",
+    "express-async-handler": "^1.0.3",
+    "forever": "^0.15.3",
+    "puppeteer": "^1.1.0"
   }
 }
