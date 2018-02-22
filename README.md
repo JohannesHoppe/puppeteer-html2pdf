@@ -2,7 +2,7 @@
 
 ![Screenshot](screenshot.png)
 
-The worlds most simplest website to PDF converter, based on [express](http://expressjs.com/) and [Puppeteer}(https://github.com/GoogleChrome/puppeteer) (previously based on [nightmare](http://www.nightmarejs.org/) which can't run headless).
+The worlds most simplest website to PDF converter, based on [express](http://expressjs.com/) and [Puppeteer](https://github.com/GoogleChrome/puppeteer) (previously based on [nightmare](http://www.nightmarejs.org/) which can't run headless).
 
 ## Howto
 ```

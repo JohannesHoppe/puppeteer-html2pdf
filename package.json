@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-html2pdf",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "The worlds most simpliest website to PDF converter, based on express and puppeteer.",
   "main": "server.js",
   "scripts": {
