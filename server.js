@@ -23,10 +23,10 @@ app.get('/pdf', asyncHandler(async (req, res) => {
   var pdfBuffer = await page.pdf({
     printBackground: true,
     margin: {
-        top: '0.75in',
-        right: '0.75in',
-        bottom: '0.75in',
-        left: '0.75in'
+        top: '0.4in',
+        right: '0.4in',
+        bottom: '0.4in',
+        left: '0.4in'
     },
     format: 'A4'
   });
