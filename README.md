@@ -21,6 +21,15 @@ Required Buildpacks:
 
 That's it. Start converting websites.
 
+## Online Demo
+
+You can test this service at https://puppeteer-html2pdf.herokuapp.com/  
+Don't use this for any productive usage and **don't rely on the service!**	
+
+- I can and will shut down the demo whenever i want.	
+- There is also no warranty of any kind.
+- I might add kitten pictures into the PDF!
+
 # License
 
 [The MIT License (MIT)](LICENSE)  
