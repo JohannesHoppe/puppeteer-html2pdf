@@ -21,8 +21,6 @@ Required Buildpacks:
 
 That's it. Start converting websites.
 
-https://github.com/JohannesHoppe/puppeteer-html2pdf
-
 # License
 
 [The MIT License (MIT)](LICENSE)  
